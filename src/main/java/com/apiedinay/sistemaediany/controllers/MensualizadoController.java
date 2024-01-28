@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.apiedinay.sistemaediany.models.Costurero;
 import com.apiedinay.sistemaediany.models.Mensualizado;
 import com.apiedinay.sistemaediany.services.Mensualizadoservices;
 

@@ -2,7 +2,7 @@ package com.apiedinay.sistemaediany.services;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,10 @@ public class Empleadoservices {
    public ArrayList<Empleado> getEmpleados(){
     return (ArrayList<Empleado>)empleadoRepository.findAll();
    }
+   public ArrayList<Empleado> getCostureros() {
+    List<Empleado> costureros = empleadoRepository.findByTipo("COSTURERO");
+    return new ArrayList<>(costureros);
+}
 
    public Empleado saveEmpleado(Empleado empleado) {
     try {
