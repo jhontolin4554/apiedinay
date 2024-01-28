@@ -35,11 +35,11 @@ public class EmpleadoController {
         Optional<Empleado> empleado = this.empleadoservices.GetById(id);
         return ResponseEntity.ok(empleado);
     }
-    @GetMapping("/costurero")
-    public ArrayList<Empleado>  getCosturero() {
-        
-        return this.getCosturero();
+    @GetMapping("/costureros")
+    public ArrayList<Empleado> getCostureros() {
+        return this.empleadoservices.getCostureros();
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Empleado> updateempleadoById(@RequestBody Empleado empleado, @PathVariable("id") long id) {
