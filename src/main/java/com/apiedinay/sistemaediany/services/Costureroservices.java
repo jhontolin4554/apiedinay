@@ -23,7 +23,7 @@ public class Costureroservices {
         return costureroRepository.save(costurero);
     } catch (Exception e) {
         // Manejo de la excepción, por ejemplo, registrar o lanzar una excepción personalizada
-        throw new RuntimeException("Error al guardar el empleado", e);
+        throw new RuntimeException("Error al guardar el costurero", e);
     }
     }
 

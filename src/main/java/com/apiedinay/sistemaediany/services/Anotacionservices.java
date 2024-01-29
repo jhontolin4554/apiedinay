@@ -21,7 +21,7 @@ public class Anotacionservices {
             return anotacionRepository.save(anotacion);
         }
         catch(Exception e){
-            throw new RuntimeException("Error al crear");
+            throw new RuntimeException("Error al crear anote");
         }
     }
 

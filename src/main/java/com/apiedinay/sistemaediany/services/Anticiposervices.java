@@ -23,7 +23,7 @@ public class Anticiposervices {
         return anticipoRepository.save(anticipo);
     } catch (Exception e) {
         // Manejo de la excepción, por ejemplo, registrar o lanzar una excepción personalizada
-        throw new RuntimeException("Error al guardar el empleado", e);
+        throw new RuntimeException("Error al guardar el anticipo", e);
     }
     }
 
