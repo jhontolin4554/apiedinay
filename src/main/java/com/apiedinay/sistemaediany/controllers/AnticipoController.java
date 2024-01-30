@@ -30,30 +30,31 @@ import com.apiedinay.sistemaediany.services.Anticiposervices;
     }
 
     @PostMapping
-    public ResponseEntity<Anticipo> saveAnticipos(@RequestBody Anticipo anticipo) {
+    public Anticipo saveAnticipos(@RequestBody Anticipo anticipo) {
         Anticipo savedAnticipo= this.anticiposervices.saveAnticipo(anticipo);
-        return new ResponseEntity<>(savedAnticipo, HttpStatus.CREATED);
+        return this.anticiposervices.saveAnticipo(savedAnticipo);
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Anticipo>> getAnticipobyid(@PathVariable("id") Long id) {
+    public Optional<Anticipo> getAnticipobyid(@PathVariable("id") Long id) {
         Optional<Anticipo> anticipo = this.anticiposervices.GetById(id);
-        return ResponseEntity.ok(anticipo);
+        return this.anticiposervices.GetById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Anticipo> updateanticipoById(@RequestBody Anticipo anticipo, @PathVariable("id") long id) {
+    public Anticipo updateanticipoById(@RequestBody Anticipo anticipo, @PathVariable("id") long id) {
         Anticipo updatedAnticipo= this.anticiposervices.updateById(anticipo, id);
-        return new ResponseEntity<>(updatedAnticipo, HttpStatus.OK);
+        return this.anticiposervices.updateById(anticipo, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
+    public String deleteById(@PathVariable("id") Long id) {
         boolean ok = this.anticiposervices.deleteById(id);
         if (ok) {
-            return new ResponseEntity<>("Se borró exitosamente", HttpStatus.OK);
+            return "Se borró exitosamente";
         } else {
-            return new ResponseEntity<>("Error al borrar", HttpStatus.NOT_FOUND);
+            return "Error al borrar";
         } 
         }
     }
