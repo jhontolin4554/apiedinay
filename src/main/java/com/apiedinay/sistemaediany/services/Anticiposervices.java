@@ -19,12 +19,9 @@ public class Anticiposervices {
    }
 
    public Anticipo saveAnticipo(Anticipo anticipo) {
-    try {
+   
         return anticipoRepository.save(anticipo);
-    } catch (Exception e) {
-        // Manejo de la excepción, por ejemplo, registrar o lanzar una excepción personalizada
-        throw new RuntimeException("Error al guardar el anticipo", e);
-    }
+   
     }
 
     public Optional <Anticipo> GetById( Long Id){

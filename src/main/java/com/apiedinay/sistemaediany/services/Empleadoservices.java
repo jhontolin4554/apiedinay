@@ -23,12 +23,9 @@ public class Empleadoservices {
 }
 
    public Empleado saveEmpleado(Empleado empleado) {
-    try {
+   
         return empleadoRepository.save(empleado);
-    } catch (Exception e) {
-        // Manejo de la excepción, por ejemplo, registrar o lanzar una excepción personalizada
-        throw new RuntimeException("Error al guardar el empleado", e);
-    }
+  
     }
 
     public Optional <Empleado> GetById( Long Id){

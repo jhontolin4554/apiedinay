@@ -19,12 +19,9 @@ public class Costureroservices {
    }
 
    public Costurero saveCosturero(Costurero costurero) {
-    try {
+    
         return costureroRepository.save(costurero);
-    } catch (Exception e) {
-        // Manejo de la excepción, por ejemplo, registrar o lanzar una excepción personalizada
-        throw new RuntimeException("Error al guardar el costurero", e);
-    }
+  
     }
 
     public Optional <Costurero> GetById( Long Id){

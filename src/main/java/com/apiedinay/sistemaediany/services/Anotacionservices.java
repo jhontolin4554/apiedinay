@@ -17,12 +17,8 @@ public class Anotacionservices {
     }
 
     public Anotacion saveAnotacion(Anotacion anotacion){
-        try{
+        
             return anotacionRepository.save(anotacion);
-        }
-        catch(Exception e){
-            throw new RuntimeException("Error al crear anote");
-        }
     }
 
     public Optional <Anotacion> GetById(Long Id){
