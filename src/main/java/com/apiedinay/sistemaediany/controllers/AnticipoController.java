@@ -1,6 +1,7 @@
 package com.apiedinay.sistemaediany.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,10 @@ import com.apiedinay.sistemaediany.services.Anticiposervices;
     public ArrayList<Anticipo> getanAnticipos(){
         return this.anticiposervices.getAnticipos();
     }
-
+    @GetMapping("/anticipos/empleado/{idEmpleado}")
+    public List<Anticipo> getAnticiposPorEmpleado(@PathVariable Long idEmpleado) {
+        return this.anticiposervices.getAnticiposPorEmpleado(idEmpleado);
+    }
     @PostMapping
     public Anticipo saveAnticipos(@RequestBody Anticipo anticipo) {
         Anticipo savedAnticipo= this.anticiposervices.saveAnticipo(anticipo);
