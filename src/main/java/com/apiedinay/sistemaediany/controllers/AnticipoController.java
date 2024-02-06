@@ -29,7 +29,7 @@ import com.apiedinay.sistemaediany.services.Anticiposervices;
     public ArrayList<Anticipo> getanAnticipos(){
         return this.anticiposervices.getAnticipos();
     }
-    @GetMapping("/anticipos/empleado/{idEmpleado}")
+    @GetMapping("/empleado/{idEmpleado}")
     public List<Anticipo> getAnticiposPorEmpleado(@PathVariable Long idEmpleado) {
         return this.anticiposervices.getAnticiposPorEmpleado(idEmpleado);
     }
