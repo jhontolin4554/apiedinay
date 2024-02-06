@@ -18,7 +18,7 @@ public class Anticiposervices {
     public ArrayList<Anticipo> getAnticipos(){
     return (ArrayList<Anticipo>)anticipoRepository.findAll();
      }
-     public List<Anticipo> getAnticiposPorEmpleado(Long idEmpleado) {
+     public ArrayList<Anticipo> getAnticiposPorEmpleado(Long idEmpleado) {
         return anticipoRepository.findByEmpleadoId(idEmpleado);
     }
    public Anticipo saveAnticipo(Anticipo anticipo) {
