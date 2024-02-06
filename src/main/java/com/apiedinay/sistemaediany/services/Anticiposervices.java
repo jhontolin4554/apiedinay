@@ -1,6 +1,5 @@
 package com.apiedinay.sistemaediany.services;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,8 @@ public class Anticiposervices {
 
     public ArrayList<Anticipo> getAnticipos(){
     return (ArrayList<Anticipo>)anticipoRepository.findAll();
-     }
-     public ArrayList<Anticipo> getAnticiposPorEmpleado(Long idEmpleado) {
-        return new ArrayList<>(anticipoRepository.findByEmpleadoId(idEmpleado));
-    }
+   }
+
    public Anticipo saveAnticipo(Anticipo anticipo) {
    
         return anticipoRepository.save(anticipo);
