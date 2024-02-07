@@ -1,5 +1,6 @@
 package com.apiedinay.sistemaediany.services;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,9 @@ public class Anticiposervices {
         catch (Exception e){
             return false;
         }
+    }
+    public List<Anticipo> getAnticiposByEmpleadoId(Long idEmpleado) {
+        return anticipoRepository.findByEmpleadoId(idEmpleado);
     }
 
 }

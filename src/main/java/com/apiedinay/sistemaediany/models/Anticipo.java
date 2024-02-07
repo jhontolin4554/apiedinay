@@ -13,10 +13,7 @@ public class Anticipo {
     @Column
     private int cantidad;
     @Column
-    private int idEmpleado;
-
-      // Getters y setters
-
+    private Long idEmpleado;
       public Long getId() {
         return id;
     }
@@ -41,11 +38,11 @@ public class Anticipo {
         this.cantidad = cantidad;
     }
 
-    public int getIdEmpleado() {
+    public Long getIdEmpleado() {
         return idEmpleado;
     }
-
-    public void setIdEmpleado(int idEmpleado) {
+    
+    public void setIdEmpleado(Long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
