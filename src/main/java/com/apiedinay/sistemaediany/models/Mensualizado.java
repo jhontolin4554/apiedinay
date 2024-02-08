@@ -1,16 +1,23 @@
 package com.apiedinay.sistemaediany.models;
 import jakarta.persistence.*;
+
 @Entity
-@Table(name="mensualizado")
+@Table(name = "mensualizado")
 public class Mensualizado {
+
     @Id
+    @Column(name = "id_empleado")
     private Long idEmpleado;
-    @Column
-    private int pagoMensualizado; 
 
-      // Getters y setters
+    @Column(name = "pago_mensualizado")
+    private Integer pagoMensualizado;
 
-      public Long getIdEmpleado() {
+    // Constructor
+    public Mensualizado() {
+    }
+
+    // Getters y setters
+    public Long getIdEmpleado() {
         return idEmpleado;
     }
 
@@ -18,11 +25,10 @@ public class Mensualizado {
         this.idEmpleado = idEmpleado;
     }
 
-    public int getPagoMensualizado() {
+    public Integer getPagoMensualizado() {
         return pagoMensualizado;
     }
 
-    public void setPagoMensualizado(int pagoMensualizado) {
+    public void setPagoMensualizado(Integer pagoMensualizado) {
         this.pagoMensualizado = pagoMensualizado;
-    }
-}
+    }}

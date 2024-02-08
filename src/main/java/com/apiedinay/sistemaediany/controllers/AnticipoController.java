@@ -1,9 +1,6 @@
 package com.apiedinay.sistemaediany.controllers;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,46 +17,47 @@ import com.apiedinay.sistemaediany.models.Anticipo;
 
 import com.apiedinay.sistemaediany.services.Anticiposervices;
 
+
 @RestController
-@RequestMapping("/anticipo")
-    public class AnticipoController {
+@RequestMapping("/anticipos")
+public class AnticipoController {
+
     @Autowired
-    Anticiposervices anticiposervices;
-    @GetMapping
-    public ArrayList<Anticipo> getanAnticipos(){
-        return this.anticiposervices.getAnticipos();
-    }
+    private Anticiposervices anticipoService;
 
-    @PostMapping
-    public Anticipo saveAnticipos(@RequestBody Anticipo anticipo) {
-        Anticipo savedAnticipo= this.anticiposervices.saveAnticipo(anticipo);
-        return this.anticiposervices.saveAnticipo(savedAnticipo);
-
+    @GetMapping("/")
+    public ResponseEntity<List<Anticipo>> getAllAnticipos() {
+        List<Anticipo> anticipos = anticipoService.getAllAnticipos();
+        return new ResponseEntity<>(anticipos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<Anticipo> getAnticipobyid(@PathVariable("id") Long id) {
-        Optional<Anticipo> anticipo = this.anticiposervices.GetById(id);
-        return this.anticiposervices.GetById(id);
+    public ResponseEntity<Anticipo> getAnticipoById(@PathVariable Long id) {
+        Optional<Anticipo> anticipo = anticipoService.getAnticipoById(id);
+        return anticipo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/empleado/{idEmpleado}")
+    public ResponseEntity<List<Anticipo>> getAnticiposByEmpleadoId(@PathVariable Long idEmpleado) {
+        List<Anticipo> anticipos = anticipoService.getAnticiposByEmpleadoId(idEmpleado);
+        return new ResponseEntity<>(anticipos, HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Anticipo> createAnticipo(@RequestBody Anticipo anticipo) {
+        Anticipo createdAnticipo = anticipoService.createAnticipo(anticipo);
+        return new ResponseEntity<>(createdAnticipo, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public Anticipo updateanticipoById(@RequestBody Anticipo anticipo, @PathVariable("id") long id) {
-        Anticipo updatedAnticipo= this.anticiposervices.updateById(anticipo, id);
-        return this.anticiposervices.updateById(anticipo, id);
-    }
-    @GetMapping("/empleado/{idEmpleado}")
-    public List<Anticipo> getAnticiposByEmpleadoId(@PathVariable Long idEmpleado) {
-        return this.anticiposervices.getAnticiposByEmpleadoId(idEmpleado);
+    public ResponseEntity<Anticipo> updateAnticipo(@PathVariable Long id, @RequestBody Anticipo anticipo) {
+        Anticipo updatedAnticipo = anticipoService.updateAnticipo(id, anticipo);
+        return updatedAnticipo != null ? new ResponseEntity<>(updatedAnticipo, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
-        boolean ok = this.anticiposervices.deleteById(id);
-        if (ok) {
-            return "Se borró exitosamente";
-        } else {
-            return "Error al borrar";
-        } 
-        }
+    public ResponseEntity<Void> deleteAnticipo(@PathVariable Long id) {
+        anticipoService.deleteAnticipo(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+}

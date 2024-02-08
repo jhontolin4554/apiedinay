@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface AnticipoRepository extends JpaRepository<Anticipo,Long> {
-    List<Anticipo> findByEmpleadoId(Long idEmpleado);
+    List<Anticipo> findByIdEmpleado(Long idEmpleado);
 }

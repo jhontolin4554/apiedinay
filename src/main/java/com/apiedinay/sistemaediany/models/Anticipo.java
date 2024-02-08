@@ -2,19 +2,30 @@ package com.apiedinay.sistemaediany.models;
 import java.util.Date;
 
 import jakarta.persistence.*;
+
 @Entity
-@Table(name="anticipo")
+@Table(name = "anticipo")
 public class Anticipo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private Date fecha;
+
     @Column
-    private int cantidad;
-    @Column
+    private Integer cantidad;
+
+    @Column(name = "id_empleado")
     private Long idEmpleado;
-      public Long getId() {
+
+    // Constructor
+    public Anticipo() {
+    }
+
+    // Getters y setters
+    public Long getId() {
         return id;
     }
 
@@ -30,20 +41,19 @@ public class Anticipo {
         this.fecha = fecha;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
     public Long getIdEmpleado() {
         return idEmpleado;
     }
-    
+
     public void setIdEmpleado(Long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
-
 }

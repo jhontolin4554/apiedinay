@@ -1,20 +1,29 @@
 package com.apiedinay.sistemaediany.models;
 import jakarta.persistence.*;
+
 @Entity
-@Table(name="costurero")
+@Table(name = "costurero")
 public class Costurero {
+
     @Id
-    private Long idEmpleado; 
-    @Column
-    private int pagoFino;
-    @Column
-    private int pagoNormal;
-    @Column
-    private int pagoJuvenil;
+    @Column(name = "id_empleado")
+    private Long idEmpleado;
 
-      // Getters y setters
+    @Column(name = "pago_fino")
+    private Integer pagoFino;
 
-      public Long getIdEmpleado() {
+    @Column(name = "pago_normal")
+    private Integer pagoNormal;
+
+    @Column(name = "pago_juvenil")
+    private Integer pagoJuvenil;
+
+    // Constructor
+    public Costurero() {
+    }
+
+    // Getters y setters
+    public Long getIdEmpleado() {
         return idEmpleado;
     }
 
@@ -22,27 +31,26 @@ public class Costurero {
         this.idEmpleado = idEmpleado;
     }
 
-    public int getPagoFino() {
+    public Integer getPagoFino() {
         return pagoFino;
     }
-     public int getPagoJuvenil() {
-        return pagoJuvenil;
-    }
-     
-    public void setPagoJuvenil(int pagoJuvenil) {
-        this.pagoJuvenil = pagoJuvenil;
-    }
-
-    public void setPagoFino(int pagoFino) {
+    public void setPagoFino(Integer pagoFino) {
         this.pagoFino = pagoFino;
     }
 
-    public int getPagoNormal() {
+    public Integer getPagoNormal() {
         return pagoNormal;
     }
 
-    public void setPagoNormal(int pagoNormal) {
+    public void setPagoNormal(Integer pagoNormal) {
         this.pagoNormal = pagoNormal;
     }
-    
+
+    public Integer getPagoJuvenil() {
+        return pagoJuvenil;
+    }
+
+    public void setPagoJuvenil(Integer pagoJuvenil) {
+        this.pagoJuvenil = pagoJuvenil;
+    }
 }

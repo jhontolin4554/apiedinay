@@ -11,45 +11,28 @@ import com.apiedinay.sistemaediany.repositories.EmpleadoRepository;
 
 @Service
 public class Empleadoservices {
-   @Autowired 
-   EmpleadoRepository empleadoRepository;
+    @Autowired
+    private EmpleadoRepository empleadoRepository;
 
-   public ArrayList<Empleado> getEmpleados(){
-    return (ArrayList<Empleado>)empleadoRepository.findAll();
-   }
-   public ArrayList<Empleado> getCostureros() {
-    List<Empleado> costureros = empleadoRepository.findByTipo("COSTURERO");
-    return new ArrayList<>(costureros);
-}
-
-   public Empleado saveEmpleado(Empleado empleado) {
-   
-        return empleadoRepository.save(empleado);
-  
+    public List<Empleado> getAllEmpleados() {
+        return empleadoRepository.findAll();
     }
 
-    public Optional <Empleado> GetById( Long Id){
-        return empleadoRepository.findById(Id);
+    public Optional<Empleado> getEmpleadoById(Long id) {
+        return empleadoRepository.findById(id);
     }
 
-    public Empleado updateById(Empleado requestEmpleado , Long id){
-        Empleado empleado= empleadoRepository.findById(id).get();
-        empleado.setNombre(requestEmpleado.getNombre());
-        empleado.setDireccion(requestEmpleado.getDireccion());
-        empleado.setTelefono(requestEmpleado.getTelefono());
-        empleado.setTipo(requestEmpleado.getTipo());
-        empleadoRepository.save(empleado);
-        return empleado;
-    }
-
-    public Boolean deleteById(Long id){
-        try{
-            empleadoRepository.deleteById(id);
-            return true;
+    public Empleado createEmpleado(Empleado empleado) {
+        return empleadoRepository.save(empleado);}
+    public Empleado updateEmpleado(Long id, Empleado empleado) {
+        if (empleadoRepository.existsById(id)) {
+            empleado.setId(id);
+            return empleadoRepository.save(empleado);
         }
-        catch (Exception e){
-            return false;
-        }
+        return null;
     }
 
+    public void deleteEmpleado(Long id) {
+        empleadoRepository.deleteById(id);
+    }
 }

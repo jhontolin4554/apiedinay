@@ -1,5 +1,5 @@
 package com.apiedinay.sistemaediany.services;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,40 +12,29 @@ import com.apiedinay.sistemaediany.repositories.CostureroRepository;
 @Service
 public class Costureroservices {
     @Autowired
-    CostureroRepository costureroRepository;
+    private CostureroRepository costureroRepository;
 
-    public ArrayList<Costurero> getCostureros(){
-    return (ArrayList<Costurero>)costureroRepository.findAll();
-   }
+    public List<Costurero> getAllCostureros() {
+        return costureroRepository.findAll();
+    }
 
-   public Costurero saveCosturero(Costurero costurero) {
-    
+    public Optional<Costurero> getCostureroById(Long id) {
+        return costureroRepository.findById(id);
+    }
+
+    public Costurero createCosturero(Costurero costurero) {
         return costureroRepository.save(costurero);
-  
     }
 
-    public Optional <Costurero> GetById( Long Id){
-        return costureroRepository.findById(Id);
-    }
-
-    public Costurero updateById(Costurero requestCosturero , Long id){
-        Costurero costurero= costureroRepository.findById(id).get();
-        costurero.setIdEmpleado(requestCosturero.getIdEmpleado());
-        costurero.setPagoFino(requestCosturero.getPagoFino());
-        costurero.setPagoJuvenil(requestCosturero.getPagoJuvenil());
-        costurero.setPagoNormal(requestCosturero.getPagoNormal());
-        costureroRepository.save(costurero);
-        return costurero;
-    }
-
-    public Boolean deleteById(Long id){
-        try{
-            costureroRepository.deleteById(id);
-            return true;
+    public Costurero updateCosturero(Long id, Costurero costurero) {
+        if (costureroRepository.existsById(id)) {
+            costurero.setIdEmpleado(id);
+            return costureroRepository.save(costurero);
         }
-        catch (Exception e){
-            return false;
-        }
+        return null;
     }
 
+    public void deleteCosturero(Long id) {
+        costureroRepository.deleteById(id);
+    }
 }

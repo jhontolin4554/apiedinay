@@ -1,5 +1,5 @@
 package com.apiedinay.sistemaediany.services;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,42 +13,33 @@ import com.apiedinay.sistemaediany.repositories.AnticipoRepository;
 @Service
 public class Anticiposervices {
     @Autowired
-    AnticipoRepository anticipoRepository;
+    private AnticipoRepository anticipoRepository;
 
-    public ArrayList<Anticipo> getAnticipos(){
-    return (ArrayList<Anticipo>)anticipoRepository.findAll();
-   }
-
-   public Anticipo saveAnticipo(Anticipo anticipo) {
-   
-        return anticipoRepository.save(anticipo);
-   
+    public List<Anticipo> getAllAnticipos() {
+        return anticipoRepository.findAll();
     }
 
-    public Optional <Anticipo> GetById( Long Id){
-        return anticipoRepository.findById(Id);
+    public Optional<Anticipo> getAnticipoById(Long id) {
+        return anticipoRepository.findById(id);
     }
 
-    public Anticipo updateById(Anticipo requestEAnticipo , Long id){
-        Anticipo anticipo= anticipoRepository.findById(id).get();
-        anticipo.setCantidad(requestEAnticipo.getCantidad());
-        anticipo.setFecha(requestEAnticipo.getFecha());
-        anticipo.setIdEmpleado(requestEAnticipo.getIdEmpleado());
-        anticipoRepository.save(anticipo);
-        return anticipo;
-    }
-
-    public Boolean deleteById(Long id){
-        try{
-            anticipoRepository.deleteById(id);
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
     public List<Anticipo> getAnticiposByEmpleadoId(Long idEmpleado) {
-        return anticipoRepository.findByEmpleadoId(idEmpleado);
+        return anticipoRepository.findByIdEmpleado(idEmpleado);
     }
 
+    public Anticipo createAnticipo(Anticipo anticipo) {
+        return anticipoRepository.save(anticipo);
+    }
+
+    public Anticipo updateAnticipo(Long id, Anticipo anticipo) {
+        if (anticipoRepository.existsById(id)) {
+            anticipo.setId(id);
+            return anticipoRepository.save(anticipo);
+        }
+        return null;
+    }
+
+    public void deleteAnticipo(Long id) {
+        anticipoRepository.deleteById(id);
+    }
 }
